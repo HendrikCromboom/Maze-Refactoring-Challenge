@@ -4,7 +4,7 @@ using System;
 namespace MazeTest
 {
     [TestClass]
-    public class AmazingTests2
+    public class AmazingTests
     {
         [TestMethod]
         public void Seed0size15x20()

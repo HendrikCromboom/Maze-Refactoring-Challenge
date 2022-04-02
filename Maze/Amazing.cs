@@ -26,7 +26,7 @@ public class Amazing
 		result += text;
 	}
 
-	public static int rnd(int count) 
+	public static int rnd(int count) //calculates a random starting point, unless random is set to a predefined number, example: unittesting seed
 	{
 		return (int) (count * random.NextDouble()) + 1;
 	}
@@ -36,14 +36,40 @@ public class Amazing
 		target = lineno;
 	}
 
-	public static void doit(int horizontal, int vertical) 
-	{
+	public static Boolean shouldMazeContinue()
+    {
+		return target != -1;
+    }
+
+	public static void stopMaze()
+    {
+		target = -1;
+    }
+
+	public static void printCopyright()
+    {
 		clear();
 		print("Amazing - Copyright by Creative Computing, Morristown, NJ");
 		println();
+	}
 
-		int h = horizontal;
-		int v = vertical;
+	public static void printHorizontalWall(int startingPosition, int h)
+    {
+		for (int i = 1; i <= h; i++)
+		{
+			if (i == startingPosition)
+				print(":  ");
+			else
+				print(":--");
+		}
+	}
+
+	public static void doit(int horizontalSize, int verticalSize) 
+	{
+		printCopyright();
+
+		int h = horizontalSize;
+		int v = verticalSize;
 		if (h == 1 || v == 1) return;
 
 		int[,] wArray = new int[h + 1,v + 1];
@@ -54,31 +80,27 @@ public class Amazing
 
 		int q = 0;
 		int z = 0;
-		int x = rnd(h);
+		int startingPosition = rnd(h);
 
 		// 130:170
-		for (int i = 1; i <= h; i++) 
-		{
-			if (i == x)
-				print(":  ");
-			else
-				print(":--");
-		}
+		printHorizontalWall(startingPosition, h);
+
 		// 180
 		print(":");
 		println();
 
 		// 190
 		int c = 1;
-		wArray[x,1] = c;
+		wArray[startingPosition,1] = c;
 		c++;
 
 		// 200
-		int r = x;
+		int r = startingPosition;
 		int s = 1;
 		GOTO(270);
 
-		while (target != -1) 
+
+		while (shouldMazeContinue()) 
 		{
 			switch (target) 
 			{
@@ -151,15 +173,15 @@ public class Amazing
 						GOTO(330);
 					continue;
 				case 330:
-					x = rnd(3);
+					startingPosition = rnd(3);
 					GOTO(340);
 					continue;
 				case 340:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(940);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(980);
-					else if (x == 3)
+					else if (startingPosition == 3)
 						GOTO(1020);
 					else
 						GOTO(350);
@@ -187,27 +209,27 @@ public class Amazing
 						GOTO(390);
 					continue;
 				case 390:
-					x = rnd(3);
+					startingPosition = rnd(3);
 					GOTO(400);
 					continue;
 				case 400:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(940);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(980);
-					else if (x == 3)
+					else if (startingPosition == 3)
 						GOTO(1090);
 					else
 						GOTO(410);
 					continue;
 				case 410:
-					x = rnd(2);
+					startingPosition = rnd(2);
 					GOTO(420);
 					continue;
 				case 420:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(940);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(980);
 					else
 						GOTO(430);
@@ -247,27 +269,27 @@ public class Amazing
 						GOTO(490);
 					continue;
 				case 490:
-					x = rnd(3);
+					startingPosition = rnd(3);
 					GOTO(500);
 					continue;
 				case 500:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(940);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(1020);
-					else if (x == 3)
+					else if (startingPosition == 3)
 						GOTO(1090);
 					else
 						GOTO(510);
 					continue;
 				case 510:
-					x = rnd(2);
+					startingPosition = rnd(2);
 					GOTO(520);
 					continue;
 				case 520:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(940);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(1020);
 					else
 						GOTO(530);
@@ -295,13 +317,13 @@ public class Amazing
 						GOTO(570);
 					continue;
 				case 570:
-					x = rnd(2);
+					startingPosition = rnd(2);
 					GOTO(580);
 					continue;
 				case 580:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(940);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(1090);
 					else
 						GOTO(590);
@@ -356,27 +378,27 @@ public class Amazing
 						GOTO(680);
 					continue;
 				case 680:
-					x = rnd(3);
+					startingPosition = rnd(3);
 					GOTO(690);
 					continue;
 				case 690:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(980);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(1020);
-					else if (x == 3)
+					else if (startingPosition == 3)
 						GOTO(1090);
 					else
 						GOTO(700);
 					continue;
 				case 700:
-					x = rnd(2);
+					startingPosition = rnd(2);
 					GOTO(710);
 					continue;
 				case 710:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(980);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(1020);
 					else
 						GOTO(720);
@@ -404,13 +426,13 @@ public class Amazing
 						GOTO(760);
 					continue;
 				case 760:
-					x = rnd(2);
+					startingPosition = rnd(2);
 					GOTO(770);
 					continue;
 				case 770:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(980);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(1090);
 					else
 						GOTO(780);
@@ -453,13 +475,13 @@ public class Amazing
 						GOTO(850);
 					continue;
 				case 850:
-					x = rnd(2);
+					startingPosition = rnd(2);
 					GOTO(860);
 					continue;
 				case 860:
-					if (x == 1)
+					if (startingPosition == 1)
 						GOTO(1020);
-					else if (x == 2)
+					else if (startingPosition == 2)
 						GOTO(1090);
 					else
 						GOTO(870);
@@ -625,7 +647,7 @@ public class Amazing
 					GOTO(210);
 					continue;
 				case 1200:
-					target = -1;
+					stopMaze();
 					continue;
 			}
 
