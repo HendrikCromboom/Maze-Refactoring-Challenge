@@ -1,3 +1,9 @@
+Current progress @HendrikCromboom
+=====================
+
+- Refactored the tests to MSTest since I was having some never seen before dependency problems regarding some NUnit dll's, I am sure these could be resolved but since    this is just me playing around with refactoring and unit testing I am gonna refrain from investing that kind of time.
+- All tests pass before code refactor
+
 Refactoring Challenge
 =====================
 
@@ -15,3 +21,5 @@ Here's what Alan said about that code:
 
 
 So if you fancy a refactoring challenge, this could be a good place to start.
+
+
